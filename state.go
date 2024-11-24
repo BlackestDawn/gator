@@ -1,15 +1,21 @@
 package main
 
-import "github.com/BlackestDawn/gator/internal/config"
+import (
+	"fmt"
+
+	"github.com/BlackestDawn/gator/internal/config"
+	"github.com/BlackestDawn/gator/internal/database"
+)
 
 type state struct {
 	conf *config.Config
+	db   *database.Queries
 }
 
 func NewState() (*state, error) {
 	cfg, err := config.Read()
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("error reading config: %w", err)
 	}
 
 	s := new(state)
