@@ -16,6 +16,7 @@ func registerHandlers(c *commands) {
 	c.register("follow", middlewareLoggedIn(handlerFollow))
 	c.register("following", handlerListFollowing)
 	c.register("unfollow", middlewareLoggedIn(handlerDeleteFollow))
+	c.register("browse", middlewareLoggedIn(handlerGetPosts))
 }
 
 func handlerReset(s *state, cmd command) error {
